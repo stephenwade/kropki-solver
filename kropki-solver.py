@@ -235,11 +235,8 @@ def get_board():
     return board
 
 def solve_board(board):
-    if board and board.is_completed():
+    if board.is_completed():
         return board
-
-    # this is the problem function
-    board = copy.deepcopy(board)
 
     cell_ref = board.get_next_empty_cell_ref()
 
@@ -249,6 +246,7 @@ def solve_board(board):
             maybe_solved_board = solve_board(board)
             if maybe_solved_board:
                 return maybe_solved_board
+        board[cell_ref] = None
 
 def main():
     board = get_board()
